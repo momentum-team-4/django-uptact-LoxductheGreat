@@ -28,12 +28,16 @@ urlpatterns = [
     path('contacts/<int:pk>/delete/',
          contacts_views.delete_contact,
          name='delete_contact'),
+    path('contacts/<int:pk>/note/',
+         contacts_views.note_contact,
+         name='note_contact')
 ]
 
 if settings.DEBUG:
     import debug_toolbar
     urlpatterns = [
         path('__debug__/', include(debug_toolbar.urls)),
+        
 
         # For django versions before 2.0:
         # url(r'^__debug__/', include(debug_toolbar.urls)),

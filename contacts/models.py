@@ -1,7 +1,8 @@
 from django.db import models
 from django.core.validators import RegexValidator
 from localflavor.us.models import USStateField, USZipCodeField
-
+from users.models import User
+from datetime import datetime
 
 class Contact(models.Model):
     phone_regex = RegexValidator(
@@ -19,3 +20,12 @@ class Contact(models.Model):
     city = models.CharField(max_length=255, null=True, blank=True)
     state = USStateField(null=True, blank=True)
     zip_code = USZipCodeField(null=True, blank=True)
+    birthday = models.DateField(null=True, blank= True)
+    note = models.DateTimeField(default=datetime.now, blank = True)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return f"{self.name}"
+
+    def __repr__(self):
+        return f"< Contact: pk = {self.pk} name = {self.name}"

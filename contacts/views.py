@@ -46,3 +46,13 @@ def delete_contact(request, pk):
 
     return render(request, "contacts/delete_contact.html",
                   {"contact": contact})
+
+
+def note_contact(request, pk):
+    contact = get_object_or_404(Contact, pk=pk)
+    if request.method == 'GET':
+        form = ContactForm(instance=contact)
+        return render(request, "contacts/note_contact.html", {
+            "form": form,
+            "contact": contact
+            })
